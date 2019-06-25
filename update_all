@@ -1,0 +1,7 @@
+#! /bin/bash
+
+cd ~/bin;
+echo "\033[0;36mPulling changes in Bin from GitLab:\033[0m"
+git pull;
+echo "\033[0;36mPulling changes in Blog from GitLab:\033[0m"
+blog update;

@@ -1,0 +1,90 @@
+# ALIASES
+
+## System Utilities
+
+alias C=clear
+alias Z=exit
+alias sd="shutdown 0"
+alias aliases="vim -a ~/bin/zsh/.zsh-aliases"
+alias meta="vim -a ~/.zshrc"
+alias F="xdg-open . &"
+alias mouse="xinput set-prop  15 296 1"
+alias pac=pacman
+alias server="python -m SimpleHTTPServer 5000"
+alias public-ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias private-ip="hostname -I | awk 'END{print $1}'"
+# alias vim=vi
+
+## Applications
+
+alias aur=yay
+alias py2=python
+alias py3=python3
+alias b=blog
+alias ip=ifconfig
+alias hn=pyhn
+alias S="vim ."
+alias t=touch
+alias j=jekyll
+alias jserve='jekyll serve --watch --port 5000'
+alias bjs="bundle exec jekyll serve --watch"
+alias redis=redis-cli
+alias nodem=nodemon
+alias micro=~/Apps/micro
+alias vnc=~/Apps/VNC-Viewer-6.19.107-Linux-x64
+alias tor='/home/abhishek/Documents/tor/Browser/start-tor-browser &'
+
+alias rr=/usr/bin/R
+
+## SERVERS
+
+### Nginx
+alias ngstart="systemctl start nginx"
+alias ngstop="systemctl stop nginx"
+alias ngrestart="systemctl restart nginx"
+alias ngstatus="systemctl status nginx"
+alias ngenable="systemctl enable nginx"
+
+### Apache
+alias apstart="systemctl start httpd.service"
+alias apstop="systemctl stop httpd.service"
+alias aprestart="systemctl restart httpd.service"
+alias apstatus="systemctl status httpd.service"
+
+### MySQL
+alias mystart="systemctl start mariadb.service"
+alias mystop="systemctl stop mariadb.service"
+alias myrestart="systemctl restart mariadb.service"
+alias mystatus="systemctl  status mariadb.service"
+
+### Redis
+alias redstart="systemctl start redis.service"
+alias redstop="systemctl stop redis.service"
+alias redrestart="systemctl restart redis.service"
+alias redstatus="systemctl status redis.service"
+
+## Git
+alias gitea="git config credential.username 'abhishek'"
+alias github="git config credential.username 'abhishekbalam'"
+alias gitlab="git config credential.username 'abhishekbalam96'"
+alias gitball="git config credential.username 'cricketball'"
+alias gitcred="git config --global credential.helper 'store --file ~/.my-credentials'"
+alias greset="git rm -r --cached ."
+alias gremote="git remote show origin"
+
+## Docker
+
+alias dccreate='docker-compose create'
+alias dcrestart='docker-compose restart'
+alias dcstart='docker-compose start'
+alias dcstop='docker-compose stop'
+alias dckill='docker-compose kill'
+
+# Server Admin
+alias memory='watch -n 5 free -m'
+
+# Desktop
+
+## KDE 
+
+alias krestart="kquitapp5 plasmashell;kstart5 plasmashell"

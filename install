@@ -1,0 +1,30 @@
+#! /bin/bash
+
+echo "\e[38;5;222m\nSetting up all scripts:\e[0m"
+if [ -x "$(command -v apt)" ]; then
+	echo "\e[38;5;222mUpdating system package databases with Apt.\e[0m"
+	sudo apt update
+	echo "\e[38;5;222mInstalling ZSH with Apt.\e[0m"
+	sudo apt install zsh
+elif [ -x "$(command -v pacman)" ]; then
+	echo "\e[38;5;222mUpdating system package databases with Pacman.\e[0m"
+	sudo pacman -Syy
+	echo "\e[38;5;222mInstalling ZSH with Pacman.\e[0m"
+	sudo pacman -S zsh
+elif [ -x "$(command -v yum)" ]; then
+	echo "\e[38;5;222mUpdating system package databases with Yum.\e[0m"
+	sudo yum check-update
+	echo "\e[38;5;222mInstalling ZSH with Yum.\e[0m"
+	sudo yum install zsh
+else
+	echo -e "\n\e[31m\e[1mUnrecognised system!\e[0m"
+	echo ""
+	exit 1
+fi
+echo "\e[38;5;222mInstalling Oh-My-Zsh scripts.\e[0m"
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+echo "\e[38;5;222mInstalling Zsh aliases and exports.\e[0m"
+# ch zsh
+sh $HOME/bin/zsh/install
+echo ""
+exit 0

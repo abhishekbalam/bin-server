@@ -1,0 +1,133 @@
+#!/bin/bash
+
+help_msg(){
+	
+	echo ""
+	
+	if [ "${1+xxx}" ];
+		then
+		echo -e $1
+		echo ""
+	fi
+	
+	echo -e "\e[36m\e[1m__Py Init Script__\e[0m"
+	echo ""
+	echo "A Bash Script to create python project structures."
+	
+	echo ""
+	
+	echo "Usage Instructions:"
+	echo -e " \e[92mnew <project_name>\e[0m" 
+	echo "		Starts a standard python project with venv in this directory."
+	echo ""
+	echo " Optional args:"
+	echo -e " \e[92m-g\e[0m"
+	echo "		To initialize git repository."
+	echo -e " \e[92m-h\e[0m"
+	echo "		Help and documentation."
+	echo ""
+	# echo -e " \e[92m-c\e[0m"
+	# echo "		Configuration."
+	# echo ""
+		
+}
+
+help(){
+	help_msg
+	echo ""
+	echo -e "\e[1mHelp Text\e[0m"
+	echo -e "Lorem ipsum dolor sit amet, consectetur adipisicing elit.\nQuia libero voluptatum veniam laudantium corporis, illo enim"
+	echo -e "\nipsa ut voluptatem similique possimus delectus vitae quisquam.\nDistinctio molestias dolor,"
+	echo -e "\nsuscipit doloremque ipsa."
+	exit 1;
+}
+
+if [[ $# -eq 0 ]] ; then
+	help_msg
+	exit 1;
+fi
+
+git_init=false
+proj_name=
+while [ $# -gt 0 ]
+do
+    case "$1" in
+       	new)  proj_name=$2; shift;;
+		-g)  git_init=true;;
+		-h)  help;;
+		*)  
+		
+			help_msg "\e[31m\e[1mWrong arguments!\e[0m"
+			exit 1;
+			break;
+ 	esac
+    shift
+done
+
+if [ -z "$proj_name" ] && [ "${proj_name+xxx}" = "xxx" ]; then
+	help_msg "\e[31m\e[1mSet project name!\e[0m"
+	exit 1;
+fi
+
+if [ -d "$proj_name" ]; then
+  echo -e '\e[31m\e[1mERROR: Project Exists..\e[0m\nExiting...' ;
+  exit 1;
+fi
+
+echo "Creating Virtualenv..."
+
+virtualenv "$proj_name"
+
+cd $proj_name 
+
+if [ "$git_init" = true ]; then
+	echo "Initializing git..."
+	printf "*pyc\n__pycache__\nbin\npyvenv.cfg\ninclude\nlib*\nshare" > .gitignore
+	git init .
+fi
+
+echo "Setting up main directory..."
+mkdir $proj_name
+cd $proj_name
+printf "init" > __init__.py
+mkdir test
+cd ../
+
+echo "Setting up Docs folder..."
+mkdir "docs"
+
+echo "Creating README.md..."
+printf "# $proj_name" > README.txt
+
+echo "Creating LICENCE.txt.."
+
+
+#options -> /licenses/<i>
+#1)AGPL
+#2)GPL
+#3)Mozilla Public Licence
+#4)Apache Licence 2.0
+#5)MIT Licence
+#6)Unilicence
+
+# wget -O LICENCE http://api.abhishekbalam.xyz/licenses/2
+
+# sed -i -e 's/<[^>]*>//g' LICENCE
+# echo "here"
+# sed -i -e 's/&amp;/\&/g; s/&lt;/\</g; s/&gt;/\>/g; s/&quot;/\"/g; s/#&#39;/\'"'"'/g; s/&ldquo;/\"/g; s/&rdquo;/\"/g;' LICENCE
+
+echo "Creating requirements.txt.."
+printf "requirements" > requirements.txt
+
+
+echo "Creating Makefile..."
+printf "init:\n\tpip install -r requirements.txt" > Makefile
+
+echo "Creating setup.py..."
+printf "setup" > setup.py
+
+if [ "$git_init" = true ]; then
+	git add .
+fi
+
+source bin/activate

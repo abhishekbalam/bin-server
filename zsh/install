@@ -1,0 +1,12 @@
+#! /bin/sh
+
+ALIAS="source ~/bin/zsh/.zsh-aliases"
+file="../../.zshrc"
+
+if grep -q "$ALIAS" $file;then # For cheking to be case insensitive use -i
+	echo "Aliases already Installed!"
+else
+    echo -n "\n\n# PATHS \n\nexport PATH=$PATH:$HOME/bin" >> $file
+	echo -n "\n\n# ALIASES\n\nsource ~/bin/zsh/.zsh-aliases" >> $file
+	echo "ZSH configs loaded.\nRestart Terminal to see changes..."
+fi

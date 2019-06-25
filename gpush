@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if [ "$#" -eq  "0" ]
+	then
+		echo -e "\e[38;5;222m---------------------------------------------";
+		echo -e "Commit Message:\"$(date)\"" ;
+		echo -e "---------------------------------------------\e[0m";
+		git add .;
+		git commit -m "$(date)";
+		git push -u origin master;
+	else 
+		echo -e "\e[38;5;222m---------------------------------------------";
+		echo -e "Commit Message: \"$1\"";
+		echo -e "---------------------------------------------\e[0m";
+		git add .;
+		git commit -m "$1";
+		git push -u origin master;		
+fi

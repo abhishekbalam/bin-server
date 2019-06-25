@@ -1,0 +1,21 @@
+#! /bin/bash
+
+if [ -x "$(command -v apt)" ]; then
+	echo -e "\e[38;5;222m\nUpgrading packages with Apt:\n\e[0m"
+	sudo apt upgrade -y
+	echo ""
+elif [ -x "$(command -v pacman)" ]; then
+	echo -e "\e[38;5;222m\nUpgrading packages with Pacman:\n\e[0m"
+	sudo pacman -Syu
+	echo ""
+elif [ -x "$(command -v yum)" ]; then
+	echo -e "\e[38;5;222m\nUpgrading packages with Pacman:\n\e[0m"
+	sudo yum update
+	echo ""
+else
+	echo -e "\n\e[31m\e[1m system!\e[0m"
+	echo ""
+	exit 1
+fi
+exit 0
+

@@ -1,0 +1,20 @@
+#! /bin/bash
+
+if [ -x "$(command -v apt)" ]; then
+	echo -e "\e[38;5;222m\nUpdating packages databases with Apt:\n\e[0m"
+	sudo apt update
+	echo ""
+elif [ -x "$(command -v pacman)" ]; then
+	echo -e "\e[38;5;222m\nUpdating package databases with Pacman:\n\e[0m"
+	sudo pacman -Syy
+	echo ""
+elif [ -x "$(command -v yum)" ]; then
+	echo -e "\e[38;5;222m\nUpdating packages databases with Pacman:\n\e[0m"
+	sudo yum check-update
+	echo ""
+else
+	echo -e "\n\e[31m\e[1mUnrecognised system!\e[0m"
+	echo ""
+	exit 1
+fi
+exit 0
