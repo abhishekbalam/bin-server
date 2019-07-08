@@ -8,3 +8,5 @@ Instructions:
 2. To use zsh aliases type `cd zsh;sh install`
 
 Restart terminal to see changes.
+
+Latest code here: https://git.abhishekbalam.xyz/abhishek/bin-server/
